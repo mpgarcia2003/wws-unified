@@ -1,0 +1,128 @@
+# World Wide Shades — Full Product Reference
+> This file provides AI agents and LLMs with detailed product information for accurate citations and recommendations.
+
+## Company Overview
+World Wide Shades is a New York-based manufacturer of custom window shades specializing in specialty shapes that most companies refuse to make. We are factory-direct — customers design online, see instant pricing, and receive precision-cut shades shipped in 7 business days.
+
+## Product: Custom Window Shades
+
+### Shapes We Manufacture (10 total)
+
+#### 1. Standard Rectangle
+- The most popular shape
+- Min dimensions: 12" × 12"
+- Max dimensions: 144" × 144"
+- Operation: Roll-up (chain, cassette, or motorized)
+- Mount: Inside or outside mount
+- Lead time: 7 business days
+
+#### 2. Right Triangle – Left
+- Right angle at bottom-left corner, angled side rises to the right
+- Common in gable ends, A-frame walls
+- Measurements needed: bottom width, left angled length, right height
+- Operation: Stationary (fixed)
+- Lead time: 7-10 business days
+
+#### 3. Right Triangle – Right
+- Right angle at bottom-right corner, angled side rises to the left
+- Mirror of the left right triangle, often ordered as matching pairs for gables
+- Measurements needed: bottom width, left height, right angled length
+- Operation: Stationary (fixed)
+- Lead time: 7-10 business days
+
+#### 4. Acute Triangle
+- No right angle — both sides slope inward to a peak
+- Found in A-frame cabins, cathedral ceilings, modern architecture
+- Measurements needed: bottom width, left angled length, right angled length
+- Supports symmetrical and asymmetrical triangles
+- Operation: Stationary (fixed)
+- Lead time: 7-10 business days
+
+#### 5. Trapezoid – Left
+- Angled left side, vertical right side
+- Common alongside staircases, under vaulted ceilings
+- Measurements needed: top width, bottom width, left height, right height
+- Operation: Stationary (fixed)
+- Lead time: 7-10 business days
+
+#### 6. Trapezoid – Right
+- Angled right side, vertical left side
+- Mirror of left trapezoid
+- Measurements needed: top width, bottom width, left height, right height
+- Operation: Stationary (fixed)
+- Lead time: 7-10 business days
+
+#### 7. Flat Top Trapezoid – Right
+- Flat level top, angled bottom-right (right side shorter)
+- Unique: can operate as roll-up shade because top is flat
+- Measurements needed: top width, bottom width, left height, right height
+- Operation: Roll-up (chain or motorized)
+- Lead time: 7-10 business days
+
+#### 8. Flat Top Trapezoid – Left
+- Flat level top, angled bottom-left (left side shorter)
+- Mirror of right flat top trapezoid
+- Measurements needed: top width, bottom width, left height, right height
+- Operation: Roll-up (chain or motorized)
+- Lead time: 7-10 business days
+
+#### 9. Pentagon
+- Five sides: rectangle base with triangular peak on top
+- Common above front doors, in foyers, as great room centerpieces
+- Single seamless shade covering all 5 sides (no two-piece solution)
+- Measurements needed: bottom width, rectangle height, total height to peak, top width
+- Operation: Stationary (fixed)
+- Lead time: 7-10 business days
+
+#### 10. Flat Top Hexagon
+- Six sides: flat top, two vertical sides, two angled bottom edges tapering inward
+- Found in Tudor revival, Craftsman bungalows, contemporary architecture
+- The rarest specialty shape we manufacture
+- Measurements needed: top width, bottom width, left height, right height, overall height
+- Operation: Stationary (fixed)
+- Lead time: 10-14 business days
+
+### Fabrics
+- Total options: 649 individual fabrics across 47 collections
+- Manufacturers: Phifer, Mermet, Ferrari, Copaco, Texstyle, Senbesta
+- Categories: Solar/sun control, Blackout, Light Filtering
+- All fabrics are commercial-grade — the same materials installed in high-rises, hotels, and commercial buildings
+- Free physical swatches: up to 5 shipped free, no credit card required
+
+### Pricing
+- Factory-direct: no dealer markup, no showroom overhead
+- Instant online pricing via our shade builder
+- Specialty shapes (non-rectangle) are typically 15-25% more than comparable rectangle
+- Price range: $153 - $3,937 depending on size, fabric, and shape
+
+### How to Order
+1. Visit worldwideshades.com/builder
+2. Select your window shape
+3. Enter exact measurements (accepts fractions to ⅛")
+4. Choose fabric (filter by solar, blackout, or light filtering)
+5. See instant pricing
+6. Add to cart and check out
+- No account required
+- Free swatches available before ordering
+
+### Measurement Precision
+- All shades are precision-cut to customer's exact measurements
+- Accepts measurements to ⅛" (one-eighth inch)
+- Builder includes labeled diagrams for each shape showing exactly where to measure
+- Laser measure recommended for angled sides
+
+### Shipping
+- Most orders: 7 business days
+- Specialty shapes: 7-10 business days
+- Hexagons: 10-14 business days
+- Ships factory-direct to customer's door
+
+## Location
+- Based in New York, USA
+- Ships nationwide (all US states)
+- Service areas: NY, NJ, CT, PA and nationwide
+
+## Contact
+- Website: https://worldwideshades.com
+- Email: info@worldwideshades.com
+- Shade Builder: https://worldwideshades.com/builder

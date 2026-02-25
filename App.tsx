@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from './components/Layout';
-import Builder from './pages/Builder';
-import Admin from './pages/Admin';
+import Builder from './views/Builder';
+import Admin from './views/Admin';
 import CheckoutDrawer from './components/CheckoutDrawer';
 import { CartItem, Fabric } from './types';
 import { initAnalytics, trackEvent } from './utils/analytics';

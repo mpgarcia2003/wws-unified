@@ -1,9 +1,12 @@
 import { CartItem, Fabric, EmailSettings, Order, Message, OrderStatus, BlogPost } from '../types';
-import { ALL_FABRICS } from '../constants';
+import { ALL_FABRICS, PRICE_TABLES, SPECIALTY_PRICE_TABLE_1, SIZE_BREAKPOINTS } from '../constants';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://jfpdxwdggvxxgntuasqu.supabase.co';
-const supabaseAnonKey = 'sb_publishable_OYktS03HiATDVr6ZDD3QRA_4By1mICe';
+// Use env vars for the unified project; fall back to hardcoded for dev safety
+const supabaseUrl = (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_SUPABASE_URL)
+  || 'https://rgfoznvbjcjtajikpspu.supabase.co';
+const supabaseAnonKey = (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+  || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnZm96bnZiamNqdGFqaWtwc3B1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5NTQ0NTUsImV4cCI6MjA4NzUzMDQ1NX0.RCaRu3d2dXCPbWRWJ3Oy5pFwgJZ9Kgb6EFvdBOlsows';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
@@ -80,15 +83,86 @@ export const updateOrderStatus = async (orderId: string, status: OrderStatus) =>
   return getOrders();
 };
 
-// --- FABRICS ---
+// --- FABRICS (from wws_fabrics table) ---
 export const getDynamicFabrics = async (): Promise<Fabric[]> => {
-  const { data, error } = await supabase.from('fabrics').select('*').eq('is_visible', true);
-  if (error || !data || data.length === 0) return ALL_FABRICS;
-  return data.map(f => ({
-    ...f,
-    priceGroup: f.price_group,
-    cloudinaryId: f.cloudinary_id
-  }));
+  try {
+    const { data, error } = await supabase
+      .from('wws_fabrics')
+      .select('*')
+      .eq('is_active', true)
+      .order('sort_order', { ascending: true });
+
+    if (error || !data || data.length === 0) {
+      console.warn('Supabase fabric fetch failed, using hardcoded fallback:', error?.message);
+      return ALL_FABRICS;
+    }
+
+    console.log(`✅ Loaded ${data.length} fabrics from Supabase`);
+
+    return data.map((f: any) => ({
+      id: f.legacy_id || f.id,
+      name: f.name,
+      description: `Premium ${f.category.toLowerCase()} shade material. Crafted for architectural precision and interior elegance.`,
+      category: f.category as 'Blackout' | 'Light Filtering',
+      tone: f.tone as 'light' | 'dark' | 'neutral',
+      cloudinaryId: f.cloudinary_url,
+      priceGroup: f.price_group,
+      features: f.features || ['UV Protection', 'Fade Resistant'],
+      rgb: { r: f.rgb_r || 200, g: f.rgb_g || 200, b: f.rgb_b || 200 },
+      sku: f.sku || `WWS-${f.legacy_id?.toUpperCase() || f.id}`,
+      shopifyId: `VARIANT-${500000 + (f.sort_order || 0)}`,
+      shopifyProductId: `PROD-${Math.floor((f.sort_order || 0) / 10) + 1000}`,
+    }));
+  } catch (err) {
+    console.error('getDynamicFabrics error:', err);
+    return ALL_FABRICS;
+  }
+};
+
+// --- PRICE GRIDS (from wws_price_grids table, cached in memory) ---
+let _priceGridCache: Record<string, number[][]> | null = null;
+
+export const loadPriceGrids = async (): Promise<Record<string, number[][]>> => {
+  if (_priceGridCache) return _priceGridCache;
+
+  try {
+    const { data, error } = await supabase.from('wws_price_grids').select('group_code, grid');
+    if (error || !data || data.length === 0) {
+      console.warn('Price grid fetch failed, using hardcoded fallback:', error?.message);
+      _priceGridCache = { ...PRICE_TABLES, SPECIALTY_1: SPECIALTY_PRICE_TABLE_1 };
+      return _priceGridCache;
+    }
+
+    const grids: Record<string, number[][]> = {};
+    for (const row of data) {
+      grids[row.group_code] = typeof row.grid === 'string' ? JSON.parse(row.grid) : row.grid;
+    }
+    console.log(`✅ Loaded ${data.length} price grids from Supabase`);
+    _priceGridCache = grids;
+    return grids;
+  } catch (err) {
+    console.error('loadPriceGrids error:', err);
+    _priceGridCache = { ...PRICE_TABLES, SPECIALTY_1: SPECIALTY_PRICE_TABLE_1 };
+    return _priceGridCache;
+  }
+};
+
+export const getSupabasePriceFromTable = async (
+  priceGroup: string,
+  widthInches: number,
+  heightInches: number,
+  isSpecialty: boolean = false
+): Promise<number> => {
+  const grids = await loadPriceGrids();
+  const table = isSpecialty ? grids['SPECIALTY_1'] : grids[priceGroup];
+  if (!table) return 0;
+
+  const widthIdx = SIZE_BREAKPOINTS.findIndex(s => widthInches <= s);
+  const heightIdx = SIZE_BREAKPOINTS.findIndex(s => heightInches <= s);
+  const w = widthIdx === -1 ? 9 : Math.max(0, Math.min(widthIdx, 9));
+  const h = heightIdx === -1 ? 9 : Math.max(0, Math.min(heightIdx, 9));
+
+  return table[h][w];
 };
 
 // --- CONSULTATION REQUESTS ---

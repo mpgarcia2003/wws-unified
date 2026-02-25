@@ -1,0 +1,17 @@
+# World Wide Shades — Crawl rules
+# https://worldwideshades.com
+
+User-agent: *
+Allow: /
+Disallow: /builder
+Disallow: /cart
+Disallow: /admin
+Disallow: /api/
+Disallow: /_next/
+
+# Sitemap
+Sitemap: https://worldwideshades.com/sitemap.xml
+
+# LLM / AI agent discovery
+# See llms.txt for AI-friendly site summary
+# See llms-full.txt for detailed product catalog

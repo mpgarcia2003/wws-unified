@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Search, MapPin, Check, Ruler, UserCheck, Star, CheckCircle, Zap, Layout, Sidebar, Battery, Smartphone, Sun, Wrench, Info, ArrowRight, X, Layers, Image as ImageIcon, PanelLeftClose, ChevronRight } from 'lucide-react';
 import { ShadeConfig, ShapeType, Fabric, RoomAnalysis } from '../types';
-import { STEPS, FRACTIONS, getInstallerForZip, SHAPE_CONFIGS, VALANCE_OPTIONS, SIDE_CHANNEL_OPTIONS, ALL_FABRICS } from '../constants';
+import { STEPS, FRACTIONS, getInstallerForZip, SHAPE_CONFIGS, VALANCE_OPTIONS, SIDE_CHANNEL_OPTIONS } from '../constants';
 import FabricSuggestions from './FabricSuggestions';
 import { useLanguage } from '../LanguageContext';
 import { trackEvent } from '../utils/analytics';

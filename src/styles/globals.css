@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/*
+ * ==============================================
+ * World Wide Shades — Design System Tokens
+ * Editorial design: Instrument Serif + DM Sans
+ * ==============================================
+ */
+
+@theme {
+  /* Core palette */
+  --color-ink: #0c0c0c;
+  --color-ink-2: #333333;
+  --color-ink-3: #666666;
+  --color-cream: #f7f5f0;
+  --color-warm: #eee9df;
+  --color-sand: #d6cfc2;
+  --color-gold: #c0993a;
+  --color-gold-dk: #9a7a2a;
+  --color-gold-lt: #e8d5a0;
+  --color-white: #fefdfb;
+
+  /* Legacy (builder still references these) */
+  --color-wws-indigo: #6366f1;
+  --color-wws-indigo-dark: #4f46e5;
+  --color-wws-black: #1a1a2e;
+  --color-wws-dark: #16213e;
+  --color-wws-gray-50: #f9fafb;
+  --color-wws-gray-100: #f3f4f6;
+  --color-wws-gray-200: #e5e7eb;
+  --color-wws-gray-300: #d1d5db;
+  --color-wws-gray-500: #6b7280;
+  --color-wws-gray-700: #374151;
+  --color-wws-gray-900: #111827;
+  --color-wws-white: #ffffff;
+  --color-wws-success: #10b981;
+  --color-wws-warning: #f59e0b;
+  --color-wws-error: #ef4444;
+
+  /* Font families */
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'DM Sans', -apple-system, sans-serif;
+  --font-heading: var(--font-serif);
+  --font-body: var(--font-sans);
+
+  /* Container widths */
+  --container-storefront: 1200px;
+  --container-builder: 100%;
+}
+
+/*
+ * ==============================================
+ * Base resets & global styles
+ * ==============================================
+ */
+
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background-color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+.storefront-container {
+  max-width: var(--container-storefront);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.builder-fullscreen {
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+}
