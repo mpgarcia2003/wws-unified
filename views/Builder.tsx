@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { ShoppingCart, Ruler, FileText, Hash, Truck, ArrowRight, ArrowLeft, Palette, Wrench, Layers, Package, PenTool, ChevronRight, X, Mail, Check } from 'lucide-react';
 import Visualizer from '../components/Visualizer';

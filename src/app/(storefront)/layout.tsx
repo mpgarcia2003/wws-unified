@@ -1,4 +1,5 @@
 import { SiteNav } from '@/components/storefront/SiteNav';
+import { Footer } from '@/components/storefront/Footer';
 
 /**
  * (storefront) route group layout
@@ -13,9 +14,10 @@ export default function StorefrontLayout({
   return (
     <>
       <SiteNav />
-      <main id="MainContent" role="main" style={{ paddingTop: '64px' }}>
+      <main id="MainContent" role="main" style={{ paddingTop: '96px' }}>
         {children}
       </main>
+      <Footer />
     </>
   );
 }

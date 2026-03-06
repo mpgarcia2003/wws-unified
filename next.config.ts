@@ -13,8 +13,8 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-      // Legacy Shopify paths
-      // { source: '/pages/builder', destination: '/builder', permanent: true },
+      // /pages/builder → /builder (full-screen, no nav/footer)
+      { source: '/pages/builder', destination: '/builder', permanent: false },
     ];
   },
 

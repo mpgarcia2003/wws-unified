@@ -69,6 +69,14 @@ export function SiteNav() {
 
   return (
     <>
+      {/* ── Trust Bar (desktop only) ── */}
+      <div className="sn-trust">
+        <span>✓ Free Shipping on All Orders</span>
+        <span>✓ Made in USA</span>
+        <span>✓ 100% Fit Guarantee</span>
+        <span>✓ 100% Satisfaction Guarantee</span>
+      </div>
+
       <nav className="sn">
         <Link href="/" className="sn-logo">
           World Wide <em>Shades</em>
@@ -85,7 +93,7 @@ export function SiteNav() {
               aria-expanded={shapesOpen}
               aria-haspopup="true"
             >
-              Shades by Shape
+              Shop Shades
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`sn-chev ${shapesOpen ? 'sn-chev--open' : ''}`}><polyline points="6 9 12 15 18 9" /></svg>
             </button>
 
@@ -116,15 +124,25 @@ export function SiteNav() {
             </div>
           </div>
 
-          <Link href="/blog" className="sn-link" onClick={closeAll}>Blog</Link>
-          <Link href="/about" className="sn-link" onClick={closeAll}>About</Link>
-          <Link href="/contact" className="sn-link" onClick={closeAll}>Contact</Link>
+          <Link href="/#how-it-works" className="sn-link" onClick={closeAll}>How It Works</Link>
+          <Link href="/pages/faq" className="sn-link" onClick={closeAll}>FAQ</Link>
+          <Link href="/blogs/news" className="sn-link" onClick={closeAll}>Blog</Link>
+          <Link href="/pages/contact" className="sn-link" onClick={closeAll}>Contact</Link>
+          <Link href="/sitemap-preview" className="sn-link sn-allpages" onClick={closeAll}>
+            All Pages <span className="sn-allpages-badge">✦2,640</span>
+          </Link>
 
-          {/* Mobile-only CTA */}
-          <Link href="/builder" className="sn-cta sn-cta--mobile" onClick={closeAll}>Design Your Shade →</Link>
+          {/* Mobile-only extras */}
+          <a href="tel:+18446742716" className="sn-link sn-mobile-phone" onClick={closeAll}>(844) 674-2716</a>
+          <Link href="/pages/free-samples" className="sn-link" onClick={closeAll}>Free Samples</Link>
+          <Link href="/pages/builder" className="sn-cta sn-cta--mobile" onClick={closeAll}>Design Your Shades →</Link>
         </div>
 
-        <Link href="/builder" className="sn-cta sn-cta--desktop">Design Your Shade</Link>
+        <div className="sn-right">
+          <a href="tel:+18446742716" className="sn-phone">(844) 674-2716</a>
+          <Link href="/pages/free-samples" className="sn-samples">Free Samples</Link>
+          <Link href="/pages/builder" className="sn-cta sn-cta--desktop">Design Your Shades</Link>
+        </div>
 
         <button
           className={`sn-burger ${mobileOpen ? 'sn-burger--open' : ''}`}
@@ -136,9 +154,19 @@ export function SiteNav() {
       </nav>
 
       <style>{`
+        /* ═══════════════ TRUST BAR ═══════════════ */
+        .sn-trust {
+          position: fixed; top: 0; left: 0; right: 0; z-index: 1001;
+          height: 32px; background: #0c0c0c; color: rgba(255,255,255,.75);
+          display: flex; align-items: center; justify-content: center; gap: 2rem;
+          font-size: .7rem; font-weight: 500; letter-spacing: .03em;
+          font-family: var(--font-sans, 'DM Sans', 'Inter', -apple-system, sans-serif);
+        }
+        .sn-trust span { white-space: nowrap; }
+
         /* ═══════════════ NAV BAR ═══════════════ */
         .sn {
-          position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+          position: fixed; top: 32px; left: 0; right: 0; z-index: 1000;
           height: 64px; padding: 0 2rem;
           display: flex; align-items: center; justify-content: space-between;
           background: rgba(254,253,251,.92);
@@ -226,16 +254,41 @@ export function SiteNav() {
         .sn-dd-name { font-size: .82rem; font-weight: 500; color: #333; line-height: 1.3; }
         .sn-dd-item:hover .sn-dd-name { color: #0c0c0c; }
 
+        /* ═══════════════ RIGHT GROUP ═══════════════ */
+        .sn-right { display: flex; align-items: center; gap: .75rem; flex-shrink: 0; }
+        .sn-phone {
+          font-size: .8rem; font-weight: 600; color: #444;
+          text-decoration: none; white-space: nowrap; transition: color .2s;
+        }
+        .sn-phone:hover { color: #0c0c0c; }
+        .sn-samples {
+          font-size: .8rem; font-weight: 500; color: #666;
+          text-decoration: none; white-space: nowrap; transition: color .2s;
+        }
+        .sn-samples:hover { color: #0c0c0c; }
+
         /* ═══════════════ CTA BUTTON ═══════════════ */
         .sn-cta {
           padding: .55rem 1.3rem; background: #0c0c0c; color: #fff;
-          font-size: .82rem; font-weight: 600; border-radius: 7px;
+          font-size: .82rem; font-weight: 600; border-radius: 50px;
           text-decoration: none; transition: background .2s;
           white-space: nowrap; flex-shrink: 0;
         }
         .sn-cta:hover { background: #9a7a2a; }
         .sn-cta--mobile { display: none; }
         .sn-cta--desktop { display: inline-flex; }
+        .sn-mobile-phone { display: none; }
+
+        /* ── All Pages badge ── */
+        .sn-allpages { color: #6b7280 !important; }
+        .sn-allpages-badge {
+          display: inline-flex; align-items: center;
+          font-size: .65rem; font-weight: 700; letter-spacing: .04em;
+          color: #c0993a; background: rgba(192,153,58,.12);
+          padding: 2px 6px; border-radius: 100px;
+          margin-left: 2px;
+        }
+        .sn-allpages:hover { color: #0c0c0c !important; }
 
         /* ═══════════════ BURGER ═══════════════ */
         .sn-burger {
@@ -254,9 +307,10 @@ export function SiteNav() {
 
         /* ═══════════════ MOBILE ═══════════════ */
         @media (max-width: 768px) {
-          .sn { padding: 0 1.25rem; }
+          .sn-trust { display: none; }
+          .sn { top: 0; padding: 0 1.25rem; }
           .sn-burger { display: flex; }
-          .sn-cta--desktop { display: none; }
+          .sn-right { display: none; }
 
           .sn-links {
             display: none; position: fixed;
@@ -268,6 +322,7 @@ export function SiteNav() {
           }
           .sn-links--open { display: flex; }
           .sn-link { width: 100%; padding: .85rem .75rem; font-size: 1rem; justify-content: space-between; }
+          .sn-mobile-phone { display: flex; }
 
           .sn-dropdown {
             position: static; transform: none; width: 100%;
@@ -283,8 +338,9 @@ export function SiteNav() {
           .sn-cta--mobile {
             display: block; text-align: center;
             margin-top: 1rem; padding: .85rem 1.5rem;
-            font-size: .95rem; border-radius: 8px;
+            font-size: .95rem; border-radius: 50px;
           }
+          .sn-allpages { display: none; }
         }
       `}</style>
     </>

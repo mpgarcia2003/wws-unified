@@ -6,6 +6,7 @@ Allow: /
 Disallow: /builder
 Disallow: /cart
 Disallow: /admin
+Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
 

@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import { DM_Sans, Instrument_Serif } from 'next/font/google';
+import { GoogleTagManager } from '@/components/shared/GoogleTagManager';
+import { AnalyticsProvider } from '@/components/shared/AnalyticsProvider';
 import '@/styles/globals.css';
+
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-5THC3H88';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -18,7 +22,7 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: 'World Wide Shades | Custom Shades for Windows No One Else Can Fit',
+    default: 'World Wide Shades | Premium Custom Window Shades & Blinds | Solar Shades | Motorized Roller Shades',
     template: '%s | World Wide Shades',
   },
   description:
@@ -41,7 +45,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
   },
   other: {
-    // Uncomment and add your Google Search Console verification code:
+    'fb:app_id': '1024979196148646',
     // 'google-site-verification': 'YOUR_CODE_HERE',
   },
 };
@@ -53,7 +57,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${dmSans.variable} ${instrumentSerif.variable}`}>
-      <body>{children}</body>
+      <body>
+        {/* GTM noscript fallback — immediately after <body> per spec */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+
+        {/* GTM head script (afterInteractive = loaded after hydration, non-blocking) */}
+        <GoogleTagManager gtmId={GTM_ID} />
+
+        {/* Fire page_view on every client-side route change */}
+        <AnalyticsProvider>{children}</AnalyticsProvider>
+      </body>
     </html>
   );
 }
